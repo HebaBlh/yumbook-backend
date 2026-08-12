@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');   // Framework fuer den Web-Server
 const cors = require('cors');          // erlaubt Anfragen vom Frontend
 const mongoose = require('mongoose');  // Verbindung zu MongoDB
+const Rezept = require('./models/Rezept');     // Einbinden von Rezept.js in server.js
 
 const app = express();  // erstellt unser Server-Objekt
 const PORT = 3000;      // auf diesem Port ist das Backend erreichbar
