@@ -23,6 +23,19 @@ mongoose.connect(process.env.MONGODB_URI)
 app.get('/', (req, res) => {
   res.send('YumBook Backend läuft!');
 });
+//GET-Route für Rezepte.json
+// async, weil wir mit await auf die Datenbankabfrage warten müssen, ohne den Server zu blockieren
+// await, damit hier gewartet wird, bis die Datenbankabfrage wirklich fertig ist, bevor es weitergeht
+app.get('/rezepte',async (req, res) => {
+  const rezepte = await Rezept.find();
+  res.json(rezepte); // res.json statt res.send, weil wir eine Liste/ein Objekt zurückschicken, kein reiner Text
+})
+
+//POST-Route (create()) für Rezepte.json
+app.post('/rezepte',async (req, res) => {
+  const neuesRezept = await Rezept.create(req.body);
+  res.json(neuesRezept); 
+})
 
 // startet den Server tatsaechlich
 app.listen(PORT, () => {

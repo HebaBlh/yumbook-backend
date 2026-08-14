@@ -12,7 +12,7 @@ const rezeptSchema = new mongoose.Schema({
         required: true
     },
     zutaten: {
-        type: String,
+        type: [String],
         required: true
     }
 });
