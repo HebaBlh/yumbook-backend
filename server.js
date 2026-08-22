@@ -48,3 +48,9 @@ app.get('/rezepte/:id', async (req, res) => {
   const rezept = await Rezept.findById(req.params.id);
   res.json(rezept);
 });
+
+//PUT-Route
+app.put('/rezepte/:id', async (req, res) => {
+  const geaendert = await Rezept.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(geaendert);
+});
