@@ -23,6 +23,12 @@ mongoose.connect(process.env.MONGODB_URI)
 app.get('/', (req, res) => {
   res.send('YumBook Backend läuft!');
 });
+
+//startet den Server tatsaechlich
+app.listen(PORT, () => {
+  console.log(`Server läuft auf http://localhost:${PORT}`);
+});
+
 //GET-Route für Rezepte.json
 // async, weil wir mit await auf die Datenbankabfrage warten müssen, ohne den Server zu blockieren
 // await, damit hier gewartet wird, bis die Datenbankabfrage wirklich fertig ist, bevor es weitergeht
@@ -37,7 +43,8 @@ app.post('/rezepte',async (req, res) => {
   res.json(neuesRezept); 
 })
 
-// startet den Server tatsaechlich
-app.listen(PORT, () => {
-  console.log(`Server läuft auf http://localhost:${PORT}`);
+//GET-Route per ID -> Detailansicht eines Rezepts
+app.get('/rezepte/:id', async (req, res) => {
+  const rezept = await Rezept.findById(req.params.id);
+  res.json(rezept);
 });
