@@ -14,7 +14,12 @@ const rezeptSchema = new mongoose.Schema({
     zutaten: {
         type: [String],
         required: true
-    }
+    },
+
+    zubereitung: {
+    type: [String],
+    required: true
+  }
 });
 
 module.exports = mongoose.model('Rezept', rezeptSchema);
