@@ -54,3 +54,9 @@ app.put('/rezepte/:id', async (req, res) => {
   const geaendert = await Rezept.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.json(geaendert);
 });
+
+//DELETE-Route 
+app.delete('/rezepte/:id', async (req, res) => {
+  await Rezept.findByIdAndDelete(req.params.id);
+  res.json({ nachricht: 'Rezept gelöscht' });
+});
