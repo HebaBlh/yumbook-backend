@@ -19,6 +19,10 @@ const rezeptSchema = new mongoose.Schema({
     zubereitung: {
     type: [String],
     required: true
+  },
+    bild: {
+    type: String,
+    required: false
   }
 });
 
